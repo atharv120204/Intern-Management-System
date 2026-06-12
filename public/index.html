@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>InternTrack — Sign In</title>
+  <link rel="stylesheet" href="/css/styles.css"/>
+</head>
+<body>
+<div class="login-page">
+  <!-- Left: brand + features -->
+  <div class="login-left">
+    <div class="login-brand">
+      <div class="icon">🎓</div>
+      <div>
+        <h1>InternTrack</h1>
+        <span>Management Platform</span>
+      </div>
+    </div>
+    <div class="login-tagline">Manage your interns.<br>Drive real results.</div>
+    <p class="login-sub">A modern platform for tracking intern performance, collecting feedback, and generating data-driven hiring recommendations — all in one place.</p>
+    <div class="login-features">
+      <div class="login-feature">
+        <div class="check">✓</div>
+        Track intern performance in real-time
+      </div>
+      <div class="login-feature">
+        <div class="check">✓</div>
+        Collect and analyze feedback instantly
+      </div>
+      <div class="login-feature">
+        <div class="check">✓</div>
+        Auto-generate data-driven recommendations
+      </div>
+      <div class="login-feature">
+        <div class="check">✓</div>
+        Beautiful dashboards and analytics
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: login form -->
+  <div class="login-right">
+    <div class="login-card">
+      <h2>Welcome back</h2>
+      <p class="subtitle">Sign in to your InternTrack account</p>
+
+      <form id="login-form" onsubmit="handleLogin(event)">
+        <div class="login-field">
+          <label>Email address</label>
+          <input type="email" id="login-email" placeholder="admin@company.com" value="admin@company.com" required/>
+        </div>
+        <div class="login-field">
+          <label>Password</label>
+          <input type="password" id="login-password" placeholder="••••••••" value="password" required/>
+        </div>
+        <button type="submit" class="login-btn" id="login-btn">Sign In</button>
+      </form>
+
+      <hr class="login-divider"/>
+      <p class="login-hint">Demo: use any credentials to continue &mdash; no server auth required.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+function handleLogin(e) {
+  e.preventDefault();
+  const btn = document.getElementById('login-btn');
+  btn.textContent = 'Signing in…';
+  btn.disabled = true;
+  // Simulate brief auth delay then redirect
+  setTimeout(() => { window.location.href = '/dashboard.html'; }, 600);
+}
+</script>
+</body>
+</html>

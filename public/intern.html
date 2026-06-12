@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>InternTrack — Intern Profile</title>
+  <link rel="stylesheet" href="/css/styles.css"/>
+</head>
+<body>
+
+<div class="sidebar-overlay" id="overlay"></div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-badge">🎓</div>
+    <h2>InternTrack</h2>
+    <span>Management Platform</span>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="section-title">Main</div>
+    <a class="nav-item" href="/dashboard.html">
+      <span class="nav-icon">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+      </span>
+      Dashboard
+    </a>
+    <a class="nav-item active" href="/interns.html">
+      <span class="nav-icon">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </span>
+      Interns
+    </a>
+    <div class="section-title" style="margin-top:8px">Analytics</div>
+    <a class="nav-item" href="/performance.html">
+      <span class="nav-icon">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </span>
+      Performance
+    </a>
+    <a class="nav-item" href="/feedback.html">
+      <span class="nav-icon">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </span>
+      Feedback
+    </a>
+    <a class="nav-item" href="/recommendations.html">
+      <span class="nav-icon">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </span>
+      Recommendations
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="sidebar-user">
+      <div class="ua">AD</div>
+      <div>
+        <div class="uname">Admin</div>
+        <div class="urole">Administrator</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-left">
+      <button id="hamburger" aria-label="Menu">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <div class="breadcrumb">
+        <div class="crumb-icon">
+          <svg width="16" height="16" fill="none" stroke="#6366f1" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+        </div>
+        <h1 id="page-title">Intern Profile</h1>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <a href="/interns.html" class="back-link">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Interns
+      </a>
+    </div>
+  </div>
+
+  <div class="content" id="main-content">
+    <div style="display:flex;justify-content:center;padding:60px"><div class="spinner"></div></div>
+  </div>
+</main>
+
+<!-- MODAL: Performance Review -->
+<div class="modal-backdrop" id="modal-review">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Add Performance Review</h2>
+      <button class="btn-icon" onclick="closeModal('modal-review')">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form id="review-form" class="form-grid">
+        <input type="hidden" id="rv-intern-id"/>
+        <div class="form-group"><label>Reviewer Name *</label><input id="rv-reviewer" placeholder="Your name" required/></div>
+        <div class="form-group"><label>Review Date *</label><input id="rv-date" type="date" required/></div>
+        <div class="form-group"><label>Technical Skills (1–5) *</label><input id="rv-tech" type="number" min="1" max="5" placeholder="1–5" required/></div>
+        <div class="form-group"><label>Communication (1–5) *</label><input id="rv-comm" type="number" min="1" max="5" placeholder="1–5" required/></div>
+        <div class="form-group"><label>Teamwork (1–5) *</label><input id="rv-team" type="number" min="1" max="5" placeholder="1–5" required/></div>
+        <div class="form-group"><label>Initiative (1–5) *</label><input id="rv-init" type="number" min="1" max="5" placeholder="1–5" required/></div>
+        <div class="form-group full"><label>Punctuality (1–5) *</label><input id="rv-punc" type="number" min="1" max="5" placeholder="1–5" required/></div>
+        <div class="form-group full"><label>Notes</label><textarea id="rv-notes" placeholder="Additional comments…"></textarea></div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modal-review')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveReview()">Save Review</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Feedback -->
+<div class="modal-backdrop" id="modal-feedback">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Submit Feedback</h2>
+      <button class="btn-icon" onclick="closeModal('modal-feedback')">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form id="feedback-form" class="form-grid">
+        <input type="hidden" id="fb-intern-id"/>
+        <div class="form-group"><label>Submitted By *</label><input id="fb-by" placeholder="Your name" required/></div>
+        <div class="form-group"><label>Date *</label><input id="fb-date" type="date" required/></div>
+        <div class="form-group">
+          <label>Category</label>
+          <select id="fb-cat">
+            <option value="positive">Positive</option>
+            <option value="constructive">Constructive</option>
+            <option value="neutral">Neutral</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Visibility</label>
+          <select id="fb-private">
+            <option value="0">Public</option>
+            <option value="1">Private</option>
+          </select>
+        </div>
+        <div class="form-group full"><label>Message *</label><textarea id="fb-msg" placeholder="Share your feedback…" required></textarea></div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modal-feedback')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveFeedback()">Submit Feedback</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Recommendation -->
+<div class="modal-backdrop" id="modal-rec">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Save Recommendation</h2>
+      <button class="btn-icon" onclick="closeModal('modal-rec')">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="gen-box" id="gen-preview"></div>
+      <form id="rec-form" class="form-grid">
+        <input type="hidden" id="rec-intern-id"/>
+        <div class="form-group"><label>Recommended By *</label><input id="rec-by" placeholder="Your name" required/></div>
+        <div class="form-group"><label>Date *</label><input id="rec-date" type="date" required/></div>
+        <div class="form-group">
+          <label>Recommendation Type</label>
+          <select id="rec-type">
+            <option value="full_time">Full-Time Hire</option>
+            <option value="extend">Extend Internship</option>
+            <option value="decline">Decline</option>
+            <option value="pending">Pending</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Rating</label>
+          <select id="rec-rating">
+            <option value="exceptional">Exceptional</option>
+            <option value="strong">Strong</option>
+            <option value="adequate">Adequate</option>
+            <option value="below_expectations">Below Expectations</option>
+          </select>
+        </div>
+        <div class="form-group full"><label>Strengths</label><textarea id="rec-strengths" placeholder="Key strengths…"></textarea></div>
+        <div class="form-group full"><label>Areas for Improvement</label><textarea id="rec-improve" placeholder="Growth areas…"></textarea></div>
+        <div class="form-group full"><label>Summary *</label><textarea id="rec-summary" placeholder="Overall recommendation summary…" required></textarea></div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modal-rec')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveRecommendation()">Save Recommendation</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+<script src="/js/common.js"></script>
+<script src="/js/intern.js"></script>
+</body>
+</html>
